@@ -2,31 +2,28 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 1,
+    count: 0,
     tags: [],
   };
 
-  renderTags() {
-    if (this.state.tags.length === 0) {
-      return <p>Nourris Doggy Drogo</p>;
-    } else {
-      return (
-        <ul>
-          {this.state.tags.map((tag) => (
-            <li key={tag}>{tag}</li>
-          ))}
-        </ul>
-      );
-    }
-  }
-
   render() {
     return (
-      <React.Fragment>
-        {this.state.tags.length === 0 && "Essaie de le nourrir"}
-        {this.renderTags()}
-      </React.Fragment>
+      <div>
+        <span className="m-2">{this.formatCount()}</span>
+        <button
+          className="btn btn-secondary btn-sm"
+          onClick={this.handleIncrement}
+        >
+          Augmente
+        </button>
+      </div>
     );
+  }
+
+  handleIncrement = () => this.setState({ count: this.state.count + 1 });
+
+  formatCount() {
+    return this.state.count;
   }
 }
 
